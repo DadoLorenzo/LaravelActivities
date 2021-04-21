@@ -42,9 +42,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->hasFile('img')){
+            $filenameWithExt = $request->file('img')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('img')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.png';
+        }
+        
         $post = new Post();
         $post->title = $request->title;
         $post->description = $request->description;
+        $post->img = $fileNameToStore;
         $post->save();
 
         return redirect('/posts');
