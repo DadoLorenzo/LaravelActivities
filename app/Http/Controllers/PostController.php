@@ -42,6 +42,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'description' => 'required'
+        ]);
 
         if($request->hasFile('img')){
             $filenameWithExt = $request->file('img')->getClientOriginalName();
