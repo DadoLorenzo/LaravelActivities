@@ -20,7 +20,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                             <div class="col-md-6">
-                            <input id="title" type="text" class="form-control" name="title" @error('title') is-invalid @enderror" name="title" value="{{ $post->title }}" required  autofocus>
+                            <input id="title" type="text" class="form-control" name="title" @error('title') is-invalid @enderror name="title" value="{{ $post->title }}" required  autofocus>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
